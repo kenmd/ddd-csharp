@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddInPractice", "DddInPractice\DddInPractice.csproj", "{A619E2CB-2D93-49A0-97DE-C21A6D0743CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddInPractice.Tests", "DddInPractice.Tests\DddInPractice.Tests.csproj", "{01A33CAB-EF57-4464-9834-41B455F89BDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{A619E2CB-2D93-49A0-97DE-C21A6D0743CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A619E2CB-2D93-49A0-97DE-C21A6D0743CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A619E2CB-2D93-49A0-97DE-C21A6D0743CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A33CAB-EF57-4464-9834-41B455F89BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A33CAB-EF57-4464-9834-41B455F89BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A33CAB-EF57-4464-9834-41B455F89BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A33CAB-EF57-4464-9834-41B455F89BDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
