@@ -2,15 +2,15 @@ using System;
 
 namespace DddInPractice.Logic
 {
-    public abstract class ValueObject<T> where T: ValueObject<T>
+    public abstract class ValueObject<T> where T : ValueObject<T>
     {
-        public ValueObject(){ }
+        public ValueObject() { }
 
         public override bool Equals(object obj)
         {
             var valueObject = obj as T;
 
-            if (ReferenceEquals(valueObject, null))
+            if (valueObject is null)
                 return false;
 
             return EqualsCore(valueObject);
@@ -27,10 +27,10 @@ namespace DddInPractice.Logic
 
         public static bool operator ==(ValueObject<T> a, ValueObject<T> b)
         {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            if ((a is null) && (b is null))
                 return true;
 
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            if ((a is null) || (b is null))
                 return false;
 
             return a.Equals(b);

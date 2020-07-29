@@ -12,11 +12,13 @@ namespace DddInPractice.Logic
     {
         // note this is mutable
         public Money MoneyInside { get; private set; } = None;
-        public Money MoneyInTransaction { get; private set; } = None;
+        public Money MoneyInTransaction { get; set; } = None;
 
         public void InsertMoney(Money money)
         {
-            Money[] coinsAndNotes = { Cent, TenCent, Quarter, Dollar, FiveDollar, TwentyDollar };
+            Money[] coinsAndNotes = {
+                Cent, TenCent, Quarter, Dollar, FiveDollar, TwentyDollar
+            };
 
             // stop using more than one coint at a time
             // inserting money need to be one of these coinsAndNotes

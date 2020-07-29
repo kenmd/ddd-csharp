@@ -4,7 +4,7 @@ namespace DddInPractice.Logic
 {
     public abstract class Entity
     {
-        public long Id { get; private set; }
+        public long Id { get; set; }
 
         public Entity() { }
 
@@ -12,10 +12,10 @@ namespace DddInPractice.Logic
         {
             var other = obj as Entity;
 
-            if (ReferenceEquals(other, null))
+            if (other is null)
                 return false;
 
-            if (ReferenceEquals(this, other))
+            if (this == other)
                 return true;
 
             if (GetType() != other.GetType())
@@ -29,10 +29,10 @@ namespace DddInPractice.Logic
 
         public static bool operator ==(Entity a, Entity b)
         {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            if ((a is null) && (b is null))
                 return true;
 
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            if ((a is null) || (b is null))
                 return false;
 
             return a.Equals(b);

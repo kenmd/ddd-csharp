@@ -38,14 +38,14 @@ namespace DddInPractice.Logic
             int quarterCount,
             int oneDollarCount,
             int fiveDollarCount,
-            int twengyDollarCount)
+            int twentyDollarCount)
         {
             if (oneCentCount < 0 ||
                 tenCentCount < 0 ||
                 quarterCount < 0 ||
                 oneDollarCount < 0 ||
                 fiveDollarCount < 0 ||
-                twengyDollarCount < 0)
+                twentyDollarCount < 0)
                 throw new InvalidOperationException();
 
             OneCentCount = oneCentCount;
@@ -53,24 +53,32 @@ namespace DddInPractice.Logic
             QuarterCount = quarterCount;
             OneDollarCount = oneDollarCount;
             FiveDollarCount = fiveDollarCount;
-            TwentyDollarCount = twengyDollarCount;
+            TwentyDollarCount = twentyDollarCount;
         }
 
         public static Money operator +(Money money1, Money money2)
         {
-            Money sum = new Money(
+            if (money1 is null)
+                throw new ArgumentNullException(nameof(money1));
+            if (money2 is null)
+                throw new ArgumentNullException(nameof(money2));
+
+            return new Money(
                 money1.OneCentCount + money2.OneCentCount,
                 money1.TenCentCount + money2.TenCentCount,
                 money1.QuarterCount + money2.QuarterCount,
                 money1.OneDollarCount + money2.OneDollarCount,
                 money1.FiveDollarCount + money2.FiveDollarCount,
                 money1.TwentyDollarCount + money2.TwentyDollarCount);
-
-            return sum;
         }
 
         public static Money operator -(Money money1, Money money2)
         {
+            if (money1 is null)
+                throw new ArgumentNullException(nameof(money1));
+            if (money2 is null)
+                throw new ArgumentNullException(nameof(money2));
+
             return new Money(
                 money1.OneCentCount - money2.OneCentCount,
                 money1.TenCentCount - money2.TenCentCount,
@@ -102,6 +110,14 @@ namespace DddInPractice.Logic
                 hashCode = (hashCode * 397) ^ TwentyDollarCount;
                 return hashCode;
             }
+        }
+
+        public override string ToString()
+        {
+            if (Amount < 1)
+                return "¢" + (Amount * 100).ToString("0");
+
+            return "$" + Amount.ToString("0.00");
         }
     }
 }
