@@ -29,15 +29,15 @@ namespace DddInPractice.Tests
 
                 var y = mapper.GetById((int)x.Id).Result;
 
-                y.MoneyInTransaction.OneCentCount.Should().Be(1);
+                y.MoneyInside.OneCentCount.Should().Be(1);
 
                 y.ReturnMoney();
                 y.InsertMoney(TwentyDollar);
 
                 var z = mapper.Update((int)y.Id, y).Result;
 
-                z.MoneyInTransaction.OneCentCount.Should().Be(0);
-                z.MoneyInTransaction.TwentyDollarCount.Should().Be(1);
+                z.MoneyInside.OneCentCount.Should().Be(0);
+                z.MoneyInside.TwentyDollarCount.Should().Be(1);
 
                 var zz = mapper.Delete((int)z.Id).Result;
 

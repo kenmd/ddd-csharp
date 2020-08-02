@@ -13,7 +13,7 @@ Illustrative prototype of basic DDD pattern using C#
 
 __Basic 3 Key Words__
 
-* __Business objects__: objects with some methods (not DTO)
+* __Business objects__: Domain Model with some methods (not DTO)
   - `Entities`: mutable class with ID
   - `Value Objects`: immutable class without ID
 * `Repositories`: retrieve and store __Business objects__ with DB
@@ -29,9 +29,9 @@ __Additional Key Words__
 
 __Example__
 
-* `Entities`: snack machine (use money), employee (have address)
-* `Value Objects`: money, point (x, y), address (state, city, street)
-* `Services`: calc combining Business objects, save to file or DB
+* `Entities`: snack machine (use money), customer (have address)
+* `Value Objects`: money, point (x, y), address (state, city, street), date (ymd)
+* `Services`: calc combining Business objects, save to DB/file using repository
 
 __Main Concepts of DDD__
 
@@ -79,6 +79,12 @@ __Tips__
 * suggestion from Martin Fowler (Patterns of Enterprise Application Architecture)
   - one Data Mapper per one Domain object
 
+## Problem Description
+
+* 3 slots of snacks
+* return the change
+* check if inserted money is enough and the slot isn't empty
+* check if there's enough change
 
 ## Build and Run
 

@@ -26,12 +26,12 @@ namespace DddInPractice.Repository
 
             var newId = await conn.InsertAsync<SnackMachineTable>(new SnackMachineTable
             {
-                OneCentCount = entity.MoneyInTransaction.OneCentCount,
-                TenCentCount = entity.MoneyInTransaction.TenCentCount,
-                QuarterCount = entity.MoneyInTransaction.QuarterCount,
-                OneDollarCount = entity.MoneyInTransaction.OneDollarCount,
-                FiveDollarCount = entity.MoneyInTransaction.FiveDollarCount,
-                TwentyDollarCount = entity.MoneyInTransaction.TwentyDollarCount,
+                OneCentCount = entity.MoneyInside.OneCentCount,
+                TenCentCount = entity.MoneyInside.TenCentCount,
+                QuarterCount = entity.MoneyInside.QuarterCount,
+                OneDollarCount = entity.MoneyInside.OneDollarCount,
+                FiveDollarCount = entity.MoneyInside.FiveDollarCount,
+                TwentyDollarCount = entity.MoneyInside.TwentyDollarCount,
             }).ConfigureAwait(false);
 
             entity.Id = (long)newId;
@@ -61,16 +61,19 @@ namespace DddInPractice.Repository
             if (res == null)
                 return null;
 
-            return new SnackMachine()
-            {
-                Id = res.SnackMachineID,
-                MoneyInTransaction = new Money(
+            Money money = new Money(
                     res.OneCentCount,
                     res.TenCentCount,
                     res.QuarterCount,
                     res.OneDollarCount,
                     res.FiveDollarCount,
-                    res.TwentyDollarCount)
+                    res.TwentyDollarCount);
+
+            return new SnackMachine()
+            {
+                Id = res.SnackMachineID,
+                MoneyInside = money,
+                MoneyInTransaction = money.Amount
             };
         }
 
@@ -85,12 +88,12 @@ namespace DddInPractice.Repository
             var snackMachine = new SnackMachineTable()
             {
                 SnackMachineID = id,
-                OneCentCount = entity.MoneyInTransaction.OneCentCount,
-                TenCentCount = entity.MoneyInTransaction.TenCentCount,
-                QuarterCount = entity.MoneyInTransaction.QuarterCount,
-                OneDollarCount = entity.MoneyInTransaction.OneDollarCount,
-                FiveDollarCount = entity.MoneyInTransaction.FiveDollarCount,
-                TwentyDollarCount = entity.MoneyInTransaction.TwentyDollarCount,
+                OneCentCount = entity.MoneyInside.OneCentCount,
+                TenCentCount = entity.MoneyInside.TenCentCount,
+                QuarterCount = entity.MoneyInside.QuarterCount,
+                OneDollarCount = entity.MoneyInside.OneDollarCount,
+                FiveDollarCount = entity.MoneyInside.FiveDollarCount,
+                TwentyDollarCount = entity.MoneyInside.TwentyDollarCount,
             };
 
             var res = await conn.UpdateAsync<SnackMachineTable>(snackMachine)

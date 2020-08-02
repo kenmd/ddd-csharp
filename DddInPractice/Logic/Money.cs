@@ -88,6 +88,23 @@ namespace DddInPractice.Logic
                 money1.TwentyDollarCount - money2.TwentyDollarCount);
         }
 
+        public static Money operator *(Money money1, int multiplier)
+        {
+            if (money1 is null)
+                throw new ArgumentNullException(nameof(money1));
+
+            Money sum = new Money(
+                money1.OneCentCount * multiplier,
+                money1.TenCentCount * multiplier,
+                money1.QuarterCount * multiplier,
+                money1.OneDollarCount * multiplier,
+                money1.FiveDollarCount * multiplier,
+                money1.TwentyDollarCount * multiplier
+            );
+
+            return sum;
+        }
+
         protected override bool EqualsCore(Money other)
         {
             return OneCentCount == other.OneCentCount
@@ -118,6 +135,28 @@ namespace DddInPractice.Logic
                 return "¢" + (Amount * 100).ToString("0");
 
             return "$" + Amount.ToString("0.00");
+        }
+
+        public Money Allocate(decimal amount)
+        {
+            int count20d = Math.Min((int)(amount / 20), TwentyDollarCount);
+            amount = amount - count20d * 20;
+
+            int count5d = Math.Min((int)(amount / 5), FiveDollarCount);
+            amount = amount - count5d * 5;
+
+            int count1d = Math.Min((int)amount, OneDollarCount);
+            amount = amount - count1d * 1;
+
+            int count25c = Math.Min((int)(amount / 0.25m), QuarterCount);
+            amount = amount - count25c * 0.25m;
+
+            int count10c = Math.Min((int)(amount / 0.1m), TenCentCount);
+            amount = amount - count10c * 0.1m;
+
+            int count1c = Math.Min((int)(amount / 0.01m), OneCentCount);
+
+            return new Money(count1c, count10c, count25c, count1d, count5d, count20d);
         }
     }
 }
