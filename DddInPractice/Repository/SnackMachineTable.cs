@@ -2,13 +2,15 @@
 
 using Dapper;
 
+#pragma warning disable CA1812 // Avoid uninstantiated internal classes
+
 namespace DddInPractice.Repository
 {
     [Table("SnackMachine")]
-    public class SnackMachineTable
+    internal class SnackMachineDto
     {
         [Key]
-        public long SnackMachineID { get; set; }
+        public int SnackMachineID { get; set; }
         public int OneCentCount { get; set; }
         public int TenCentCount { get; set; }
         public int QuarterCount { get; set; }

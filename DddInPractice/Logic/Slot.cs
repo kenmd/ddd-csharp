@@ -4,8 +4,8 @@ namespace DddInPractice.Logic
     public class Slot : Entity
     {
         public SnackPile SnackPile { get; set; }
-        public SnackMachine SnackMachine { get; set; }
-        public int Position { get; set; }
+        public SnackMachine SnackMachine { get; }
+        public int Position { get; }
 
         protected Slot() { }
 
@@ -13,7 +13,7 @@ namespace DddInPractice.Logic
         {
             SnackMachine = snackMachine;
             Position = position;
-            SnackPile = new SnackPile(null, 0, 0);
+            SnackPile = SnackPile.Empty;
         }
     }
 }

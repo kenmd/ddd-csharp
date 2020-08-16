@@ -73,11 +73,14 @@ __Tips__
 * View > `UI layer` (by events and data binding)
 
 
-## Mapping
+## Repository
 
+* Repositories encapsulate all communication with external storage
 * here use Data Mapper pattern to map Domain Entity to database table
 * suggestion from Martin Fowler (Patterns of Enterprise Application Architecture)
-  - one Data Mapper per one Domain object
+  - one repository per one aggregate
+  - public API works with aggregate root only
+
 
 ## Problem Description
 
@@ -91,6 +94,10 @@ __Tips__
 ```bash
 dotnet restore
 dotnet build
+
+# checkout local-database repository
+# start local db in local-mssql
+# and run flyway migrate in flyway-mssql
 dotnet test
 ```
 

@@ -5,6 +5,7 @@ using FluentAssertions;
 
 using DddInPractice.Logic;
 using static DddInPractice.Logic.Money;
+using static DddInPractice.Logic.Snack;
 
 
 namespace DddInPractice.Tests
@@ -48,7 +49,7 @@ namespace DddInPractice.Tests
         public void BuySnack_trades_inserted_money_for_a_snack()
         {
             var snackMachine = new SnackMachine();
-            snackMachine.LoadSnacks(1, new SnackPile(new Snack("Some snack"), 10, 1m));
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 10, 1m));
 
             snackMachine.InsertMoney(Dollar);
             snackMachine.InsertMoney(Dollar);
@@ -74,7 +75,7 @@ namespace DddInPractice.Tests
         {
             //Given
             var snackMachine = new SnackMachine();
-            snackMachine.LoadSnacks(1, new SnackPile(new Snack("Some"), 1, 2m));
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 1, 2m));
 
             //When
             snackMachine.InsertMoney(Dollar);
@@ -108,7 +109,7 @@ namespace DddInPractice.Tests
         {
             //Given
             var snackMachine = new SnackMachine();
-            snackMachine.LoadSnacks(1, new SnackPile(new Snack("some"), 1, 0.5m));
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 1, 0.5m));
             snackMachine.LoadMoney(TenCent * 10);
 
             //When
@@ -125,7 +126,7 @@ namespace DddInPractice.Tests
         {
             //Given
             var snackMachine = new SnackMachine();
-            snackMachine.LoadSnacks(1, new SnackPile(new Snack("some"), 1, 0.5m));
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 1, 0.5m));
 
             //When
             snackMachine.InsertMoney(Dollar);
